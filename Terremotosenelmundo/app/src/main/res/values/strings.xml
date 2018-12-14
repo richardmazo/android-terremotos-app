@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Terremotos en el mundo</string>
+    <string name="download_earthquakes_network_error">Hubo un error al descargar los datos de terremotos</string>
+    <string name="usg_all_hour_earthquakes_url">https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson</string>
+    <string name="richter">Richter</string>
+    <string name="longitude">Longitud</string>
+    <string name="latitude">Latitude</string>
+</resources>
