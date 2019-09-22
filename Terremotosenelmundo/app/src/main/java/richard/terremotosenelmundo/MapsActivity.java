@@ -9,6 +9,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -17,6 +19,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     String strLongitude;
     String strLatitude;
+    String strMagnitude;
+    String strPlaceDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +34,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bundle extras = getIntent().getExtras();
         if(extras!=null){
             strLongitude  = extras.getString(DetailActivity.LONGITUDE);
-            strLongitude  = extras.getString(DetailActivity.LONGITUDE);
             strLatitude = extras.getString(DetailActivity.LATITUDE);
-            Toast.makeText(getApplicationContext(),"strLongitude " + strLongitude + strLatitude,Toast.LENGTH_LONG).show();
+            strMagnitude = extras.getString(DetailActivity.MAGNITUDE);
+            strPlaceDetail =  extras.getString(DetailActivity.DETAIL_PLACE);
+          //  Toast.makeText(getApplicationContext(),"strLongitude " + strLongitude + strLatitude,Toast.LENGTH_LONG).show();
         }
     }
 
@@ -40,8 +45,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng sydney = new LatLng(Double.parseDouble(strLatitude), Double.parseDouble(strLongitude));
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng places = new LatLng(Double.parseDouble(strLatitude), Double.parseDouble(strLongitude));
+        mMap.addMarker(new MarkerOptions().position(places).title(strPlaceDetail).snippet(strMagnitude));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(places,7));
     }
 }

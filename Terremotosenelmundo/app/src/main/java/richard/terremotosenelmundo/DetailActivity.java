@@ -17,9 +17,14 @@ public class DetailActivity extends AppCompatActivity {
 
     public final static String LONGITUDE = "longitude";
     public final static String LATITUDE = "latitude";
+    public final static String MAGNITUDE = "magnitude";
+    public final static String DETAIL_PLACE = "detail_place";
+
     Button btnMapa;
     TextView txtLongitude;
     TextView txtLatitude;
+    TextView txtMagnitude;
+    TextView txtDetailPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +37,25 @@ public class DetailActivity extends AppCompatActivity {
         btnMapa = (Button) findViewById(R.id.btn_mapa);
         txtLongitude = (TextView) findViewById(R.id.eq_detail_longitude);
         txtLatitude = (TextView) findViewById(R.id.eq_detail_latitude);
+        txtMagnitude = (TextView)findViewById(R.id.eq_detail_magnitude);
+        txtDetailPlace = (TextView)findViewById(R.id.eq_detail_place);
 
         btnMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String strLongitude = txtLongitude.getText().toString();
                 String strLatitude = txtLatitude.getText().toString();
+                String strMagnitude = txtMagnitude.getText().toString();
+                String strDetailPlace = txtDetailPlace.getText().toString();
+
                 //Toast.makeText(getApplicationContext(),"Latitude " + strLongitude + strLatitude,Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(),MapsActivity.class);
                 intent.putExtra(LONGITUDE,strLongitude);
                 intent.putExtra(LATITUDE,strLatitude);
+                intent.putExtra(MAGNITUDE,strMagnitude);
+                intent.putExtra(DETAIL_PLACE,strDetailPlace);
+
+
                 startActivity(intent);
             }
         });
